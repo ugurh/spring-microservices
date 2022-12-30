@@ -12,7 +12,6 @@ import org.springframework.beans.BeanUtils;
 
 @Aggregate
 public class OrderAggregate {
-
     @AggregateIdentifier
     private String orderId;
     private String userId;

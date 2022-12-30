@@ -8,7 +8,7 @@ spring:
   application:
     name: order-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/products #TODO will use order database
+    url: jdbc:postgresql://localhost:5433/orders
     driver-class-name: org.postgresql.Driver
     username: admin
     password: admin

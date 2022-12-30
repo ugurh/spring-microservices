@@ -8,7 +8,7 @@ spring:
   application:
     name: product-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/products
+    url: jdbc:postgresql://localhost:5434/products
     driver-class-name: org.postgresql.Driver
     username: admin
     password: admin

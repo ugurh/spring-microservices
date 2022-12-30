@@ -1,7 +1,7 @@
 package io.ugurh.orderservice.command.controller;
 
 import io.ugurh.orderservice.command.model.CreateOrderCommand;
-import io.ugurh.orderservice.command.model.OrderDto;
+import io.ugurh.orderservice.command.model.OrderCreateDto;
 import io.ugurh.orderservice.command.model.OrderStatus;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +23,13 @@ public class OrderController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Object> createOrder(@RequestBody OrderDto orderDto){
+    public ResponseEntity<Object> createOrder(@RequestBody OrderCreateDto orderCreateDto){
         CreateOrderCommand orderCommand = CreateOrderCommand.builder()
                 .orderId(UUID.randomUUID().toString())
                 .orderStatus(OrderStatus.CREATED)
-                .productId(orderDto.getProductId())
-                .quantity(orderDto.getQuantity())
-                .addressId(orderDto.getAddressId())
+                .productId(orderCreateDto.getProductId())
+                .quantity(orderCreateDto.getQuantity())
+                .addressId(orderCreateDto.getAddressId())
                 .userId(UUID.randomUUID().toString())
                 .build();
 
