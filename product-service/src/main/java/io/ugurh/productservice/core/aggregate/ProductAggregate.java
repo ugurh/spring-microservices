@@ -24,7 +24,7 @@ public class ProductAggregate {
     }
 
     @CommandHandler
-    public ProductAggregate(CreateProductCommand createProductCommand) throws IllegalAccessException {
+    public ProductAggregate(CreateProductCommand createProductCommand) throws Exception {
         validate(createProductCommand);
 
         ProductCreatedEvent productCreatedEvent = new ProductCreatedEvent();
@@ -32,6 +32,9 @@ public class ProductAggregate {
         BeanUtils.copyProperties(createProductCommand, productCreatedEvent);
 
         AggregateLifecycle.apply(productCreatedEvent);
+
+//        if (true)
+//            throw new Exception("Error...");
     }
 
     @EventSourcingHandler

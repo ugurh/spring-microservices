@@ -37,12 +37,7 @@ public class ProductCommandController {
                 .price(createProductDto.getPrice())
                 .quantity(createProductDto.getQuantity())
                 .build();
-        String response = null;
-        try {
-          response = commandGateway.sendAndWait(productCommand);
-        }catch (Exception ex){
-            response = ex.getLocalizedMessage();
-        }
+        String response = commandGateway.sendAndWait(productCommand);
         return ResponseEntity.ok(response);
     }
 }
