@@ -31,9 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-/axon-server/!/axon-server/
-/axon-server/plugins/cache/bundle0/last.java.version
-/axon-server/data/axonserver-controldb.mv.db
-/axon-server/data/AxonIQ.pid
-/axon-server/events/default/00000000000000000000.snapshots
-/axon-server/events/default/00000000000000000000.events
