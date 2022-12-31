@@ -1,7 +1,9 @@
 package io.ugurh.productservice.core.aggregate;
 
+import io.ugurh.core.commands.ReserveProductCommand;
 import io.ugurh.productservice.core.command.CreateProductCommand;
 import io.ugurh.productservice.core.events.ProductCreatedEvent;
+import io.ugurh.productservice.core.events.ProductReservedEvent;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
@@ -32,9 +34,6 @@ public class ProductAggregate {
         BeanUtils.copyProperties(createProductCommand, productCreatedEvent);
 
         AggregateLifecycle.apply(productCreatedEvent);
-
-//        if (true)
-//            throw new Exception("Error...");
     }
 
     @EventSourcingHandler
@@ -45,8 +44,28 @@ public class ProductAggregate {
         this.productId = productCreatedEvent.getProductId();
     }
 
-    private void validate(CreateProductCommand createProductCommand) throws IllegalAccessException {
+    @CommandHandler
+    public void handle(ReserveProductCommand reserveProductCommand) {
+        if (this.quantity < reserveProductCommand.getQuantity()) {
+            throw new IllegalArgumentException("Insufficient number of items in stock");
+        }
 
+        ProductReservedEvent productReservedEvent = ProductReservedEvent.builder()
+                .productId(reserveProductCommand.getProductId())
+                .orderId(reserveProductCommand.getOrderId())
+                .userId(reserveProductCommand.getUserId())
+                .quantity(reserveProductCommand.getQuantity())
+                .build();
+
+        AggregateLifecycle.apply(productReservedEvent);
+    }
+
+    @EventSourcingHandler
+    public void on(ProductReservedEvent productReservedEvent) {
+        this.quantity -= productReservedEvent.getQuantity();
+    }
+
+    private void validate(CreateProductCommand createProductCommand) throws IllegalAccessException {
         if (createProductCommand.getTitle() == null || createProductCommand.getTitle().isBlank()) {
             throw new IllegalAccessException("Title cannot be empty");
         }

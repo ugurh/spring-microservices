@@ -19,7 +19,7 @@ public class OrderEventHandler {
     @EventHandler
     public void on(OrderCreatedEvent event) {
         OrderEntity orderEntity = new OrderEntity();
-        BeanUtils.copyProperties(event,orderEntity);
+        BeanUtils.copyProperties(event, orderEntity);
         orderEntityRepository.save(orderEntity);
     }
 }

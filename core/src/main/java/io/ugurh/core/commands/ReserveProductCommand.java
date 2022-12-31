@@ -1,18 +1,16 @@
-package io.ugurh.productservice.core.command;
+package io.ugurh.core.commands;
 
 import lombok.Builder;
 import lombok.Data;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
-import java.math.BigDecimal;
-
 @Data
 @Builder
-public class CreateProductCommand {
+public class ReserveProductCommand {
 
     @TargetAggregateIdentifier
     private final String productId;
-    private final String title;
-    private final BigDecimal price;
     private final Integer quantity;
+    private final String orderId;
+    private final String userId;
 }

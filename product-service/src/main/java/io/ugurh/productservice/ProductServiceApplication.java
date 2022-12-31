@@ -4,7 +4,6 @@ import io.ugurh.productservice.core.errorhandling.ProductServiceEventErrorHandle
 import io.ugurh.productservice.interceptor.CreateProductCommandInterceptor;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.config.EventProcessingConfigurer;
-import org.axonframework.eventhandling.PropagatingErrorHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,7 +25,7 @@ public class ProductServiceApplication {
     }
 
     @Autowired
-    public void configure(EventProcessingConfigurer configurer){
+    public void configure(EventProcessingConfigurer configurer) {
         configurer.registerListenerInvocationErrorHandler("product-group",
                 configuration -> new ProductServiceEventErrorHandler());
 

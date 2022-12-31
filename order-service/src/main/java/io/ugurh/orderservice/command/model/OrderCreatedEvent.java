@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class OrderCreatedEvent {
-    private  String orderId;
-    private  String userId;
-    private  String productId;
-    private  String addressId;
-    private  OrderStatus orderStatus;
+    private String orderId;
+    private String userId;
+    private String productId;
+    private String addressId;
+    private OrderStatus orderStatus;
     private Integer quantity;
 }

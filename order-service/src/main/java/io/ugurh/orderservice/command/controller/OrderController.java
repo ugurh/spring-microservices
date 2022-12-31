@@ -23,7 +23,7 @@ public class OrderController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Object> createOrder(@RequestBody OrderCreateDto orderCreateDto){
+    public ResponseEntity<Object> createOrder(@RequestBody OrderCreateDto orderCreateDto) {
         CreateOrderCommand orderCommand = CreateOrderCommand.builder()
                 .orderId(UUID.randomUUID().toString())
                 .orderStatus(OrderStatus.CREATED)

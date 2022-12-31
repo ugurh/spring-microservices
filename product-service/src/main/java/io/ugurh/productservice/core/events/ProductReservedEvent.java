@@ -1,13 +1,14 @@
 package io.ugurh.productservice.core.events;
 
+import lombok.Builder;
 import lombok.Data;
 
-import java.math.BigDecimal;
-
 @Data
-public class ProductCreatedEvent {
+@Builder
+public class ProductReservedEvent {
+
+    private String orderId;
     private String productId;
-    private String title;
-    private BigDecimal price;
+    private String userId;
     private Integer quantity;
 }
