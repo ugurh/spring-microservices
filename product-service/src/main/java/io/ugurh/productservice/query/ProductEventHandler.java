@@ -7,6 +7,8 @@ import io.ugurh.productservice.core.events.ProductReservedEvent;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.messaging.interceptors.ExceptionHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +17,8 @@ import java.util.Optional;
 @Component
 @ProcessingGroup("product-group")
 public class ProductEventHandler {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductEventHandler.class);
     private ProductEntityRepository productEntityRepository;
 
     public ProductEventHandler(ProductEntityRepository productEntityRepository) {
@@ -44,5 +48,7 @@ public class ProductEventHandler {
         ProductEntity productInDB = product.get();
         productInDB.setQuantity(productInDB.getQuantity() - productReservedEvent.getQuantity());
         productEntityRepository.save(productInDB);
+
+        LOGGER.info("ProductReservedEvent is called...");
     }
 }

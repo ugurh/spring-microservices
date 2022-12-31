@@ -7,11 +7,13 @@ import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.modelling.saga.SagaEventHandler;
 import org.axonframework.modelling.saga.StartSaga;
 import org.axonframework.spring.stereotype.Saga;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Saga
 public class OrderSaga {
-
-    private final CommandGateway commandGateway;
+    private static final Logger LOGGER = LoggerFactory.getLogger(OrderSaga.class);
+    private final transient CommandGateway commandGateway;
 
     public OrderSaga(CommandGateway commandGateway) {
         this.commandGateway = commandGateway;
@@ -28,6 +30,8 @@ public class OrderSaga {
                 .quantity(orderCreatedEvent.getQuantity())
                 .build();
 
+        LOGGER.info(String.format("OrderCreatedEvent handled for orderId %s and productId %s", reserveProductCommand.getOrderId(), reserveProductCommand.getProductId()));
+
         commandGateway.send(reserveProductCommand, (commandMessage, commandResultMessage) -> {
             if (commandResultMessage.isExceptional()) {
                 // TODO
@@ -37,6 +41,6 @@ public class OrderSaga {
 
     @SagaEventHandler(associationProperty = "orderId")
     public void handle(ProductReservedEvent productReservedEvent) {
-        // TODO process payment
+        LOGGER.info(String.format("ProductReservedEvent handled for orderId %s and productId %s", productReservedEvent.getOrderId(), productReservedEvent.getProductId()));
     }
 }
