@@ -3,7 +3,7 @@ package io.ugurh.productservice.core.aggregate;
 import io.ugurh.core.commands.ReserveProductCommand;
 import io.ugurh.productservice.core.command.CreateProductCommand;
 import io.ugurh.productservice.core.events.ProductCreatedEvent;
-import io.ugurh.productservice.core.events.ProductReservedEvent;
+import io.ugurh.core.events.ProductReservedEvent;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;

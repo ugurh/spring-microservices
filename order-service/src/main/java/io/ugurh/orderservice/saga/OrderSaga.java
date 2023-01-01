@@ -1,8 +1,8 @@
-package io.ugurh.orderservice.command;
+package io.ugurh.orderservice.saga;
 
 import io.ugurh.core.commands.ReserveProductCommand;
 import io.ugurh.orderservice.command.model.OrderCreatedEvent;
-import io.ugurh.productservice.core.events.ProductReservedEvent;
+import io.ugurh.core.events.ProductReservedEvent;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.modelling.saga.SagaEventHandler;
 import org.axonframework.modelling.saga.StartSaga;

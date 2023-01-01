@@ -3,7 +3,7 @@ package io.ugurh.productservice.query;
 import io.ugurh.productservice.core.data.entity.ProductEntity;
 import io.ugurh.productservice.core.data.repository.ProductEntityRepository;
 import io.ugurh.productservice.core.events.ProductCreatedEvent;
-import io.ugurh.productservice.core.events.ProductReservedEvent;
+import io.ugurh.core.events.ProductReservedEvent;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.messaging.interceptors.ExceptionHandler;

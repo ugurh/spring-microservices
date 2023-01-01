@@ -1,4 +1,4 @@
-package io.ugurh.productservice.core.events;
+package io.ugurh.core.events;
 
 import lombok.Builder;
 import lombok.Data;
